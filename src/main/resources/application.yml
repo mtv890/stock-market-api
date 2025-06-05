@@ -1,0 +1,24 @@
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://accounts.google.com
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3306/stockMarketDB?createDatabaseIfNotExist=true
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MariaDBDialect
+  rabbitmq:
+    host: localhost
+    port: 5671
+    username: admin
+    password: 123456
+
