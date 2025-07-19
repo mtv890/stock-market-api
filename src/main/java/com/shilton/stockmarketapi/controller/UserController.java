@@ -1,6 +1,5 @@
 package com.shilton.stockmarketapi.controller;
 
-import com.shilton.stockmarketapi.aspect.AppSecured;
 import com.shilton.stockmarketapi.domain.user.User;
 import com.shilton.stockmarketapi.service.IUserService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -25,7 +24,6 @@ public class UserController {
     @PutMapping(value = "/save")
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Add/Update a User")
-    @AppSecured
     public void recordTransaction(@RequestBody User u) throws Exception {
         userService.updateUser(u);
     }

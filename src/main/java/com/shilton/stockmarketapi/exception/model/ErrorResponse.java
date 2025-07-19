@@ -1,4 +1,4 @@
-package com.shilton.stockmarketapi.exception;
+package com.shilton.stockmarketapi.exception.model;
 
 import lombok.Data;
 

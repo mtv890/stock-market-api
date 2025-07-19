@@ -1,5 +1,8 @@
-package com.shilton.stockmarketapi.exception;
+package com.shilton.stockmarketapi.exception.handler;
 
+import com.shilton.stockmarketapi.exception.model.ErrorResponse;
+import com.shilton.stockmarketapi.exception.NotFoundException;
+import com.shilton.stockmarketapi.exception.TooManyRequestsException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -14,6 +17,11 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(NotFoundException.class)
     public ResponseEntity<ErrorResponse> handleNotFound(NotFoundException ex) {
         return buildErrorResponse(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(TooManyRequestsException.class)
+    public ResponseEntity<ErrorResponse> handleTooManyRequests(TooManyRequestsException ex) {
+        return buildErrorResponse(ex.getMessage(), HttpStatus.TOO_MANY_REQUESTS);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

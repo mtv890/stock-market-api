@@ -1,5 +1,6 @@
 package com.shilton.stockmarketapi.controller;
 
+import com.shilton.stockmarketapi.aspect.RateLimited;
 import com.shilton.stockmarketapi.domain.stock.CommonStock;
 import com.shilton.stockmarketapi.domain.stock.PreferredStock;
 import com.shilton.stockmarketapi.domain.stock.Stock;
@@ -56,6 +57,7 @@ public class StockController {
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(value = "/all")
     @Operation(summary = "Get a List of all Stocks")
+    @RateLimited(maxRequests = 5, timeWindowInSeconds = 30)
     public List<Stock> getStocks() {
         return stockService.getAllStocks();
     }

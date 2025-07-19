@@ -17,6 +17,9 @@ It provides functionality to calculate stock metrics, record trades, and manage 
     - Public endpoints for Swagger UI and API documentation.
     - Protected `/api/**` endpoints requiring valid JWT tokens.
 
+- **Rate limit**:
+    - Implemented Rate limit per user using AOP.
+
 - **Messaging**:
     - RabbitMQ integration for managing pending trades using queues, exchanges, and routing keys.
 
