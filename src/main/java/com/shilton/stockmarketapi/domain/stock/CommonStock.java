@@ -1,4 +1,4 @@
-package com.shilton.stockmarketapi.domain;
+package com.shilton.stockmarketapi.domain.stock;
 
 import jakarta.persistence.Entity;
 

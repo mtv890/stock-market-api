@@ -1,18 +1,12 @@
-package com.shilton.stockmarketapi.domain;
+package com.shilton.stockmarketapi.domain.stock;
 
 import jakarta.persistence.Entity;
+import lombok.Data;
 
+@Data
 @Entity
 public class PreferredStock extends Stock {
     private Double fixedDividend;
-
-    public Double getFixedDividend() {
-        return fixedDividend;
-    }
-
-    public void setFixedDividend(Double fixedDividend) {
-        this.fixedDividend = fixedDividend;
-    }
 
     public StockType getStockType() {
         return StockType.PREFERRED;

@@ -1,17 +1,17 @@
-package com.shilton.stockmarketapi.service;
+package com.shilton.stockmarketapi.service.impl;
 
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.shilton.stockmarketapi.config.RabbitConfig;
-import com.shilton.stockmarketapi.domain.Trade;
+import com.shilton.stockmarketapi.domain.trade.Trade;
 import com.shilton.stockmarketapi.repository.StockRepository;
 import com.shilton.stockmarketapi.repository.TradeRepository;
 import com.shilton.stockmarketapi.repository.UserRepository;
 import com.shilton.stockmarketapi.exception.NotFoundException;
+import com.shilton.stockmarketapi.service.ITradeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,10 +20,9 @@ import java.time.LocalDate;
 import java.time.ZoneOffset;
 
 @Service
-public class TradeService {
+public class TradeService implements ITradeService {
 
     private static final Logger LOG = LoggerFactory.getLogger(TradeService.class);
-
 
     private final TradeRepository tradeRepository;
     private final UserRepository userRepository;
@@ -57,7 +56,7 @@ public class TradeService {
     /*
     @RabbitListener(queues = RabbitConfig.QUEUE)
     public void processPendingTransaction(String payload) {
-        System.out.println("Recibí: " + payload);
+        System.out.println("Got: " + payload);
     }*/
 
     @Transactional

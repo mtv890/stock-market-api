@@ -1,7 +1,8 @@
 # Super Simple Stock Market API
 
 ## Overview
-Super Simple Stock Market API is a Spring Boot application designed to manage trades and stocks for the Global Beverage Corporation Exchange. It provides functionality to calculate stock metrics, record trades, and manage stock data.
+Super Simple Stock Market API is a Spring Boot application designed to manage trades and stocks for the Global Beverage Corporation Exchange. 
+It provides functionality to calculate stock metrics, record trades, and manage stock data.
 
 ## Features
 - **Stock Operations**:
@@ -43,3 +44,15 @@ Super Simple Stock Market API is a Spring Boot application designed to manage tr
    ```bash
    git clone https://github.com/mtv890/stock-market-api.git
    cd stock-market-api
+
+2. Build the project:
+   ```bash
+   mvn clean install
+   ```
+3. Navigate to http://localhost:8080/swagger-ui.html to access the Swagger UI for API documentation.
+
+2. Some endpoints require Authentication, follow these Steps:
+ - Navigate to https://developers.google.com/oauthplayground/
+ - Step 1: Select Google OAuth API v2 and select https://www.googleapis.com/auth/userinfo.email -> Authorize APIs
+ - Step 2: Select Exchange auth code for tokens get "id_token" from response.
+ - Step 3: Use the id_token as Bearer token in the Authorization header for API requests (Postman).

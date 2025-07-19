@@ -1,14 +1,13 @@
 package com.shilton.stockmarketapi.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.shilton.stockmarketapi.domain.Trade;
+import com.shilton.stockmarketapi.domain.trade.Trade;
 import com.shilton.stockmarketapi.exception.NotFoundException;
-import com.shilton.stockmarketapi.service.TradeService;
+import com.shilton.stockmarketapi.service.ITradeService;
 import io.swagger.v3.oas.annotations.Operation;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,8 +17,11 @@ public class TradeController {
 
     private static final Logger LOG = LoggerFactory.getLogger(TradeController.class);
 
-    @Autowired
-    private TradeService tradeService;
+    private final ITradeService tradeService;
+
+    public TradeController(ITradeService tradeService) {
+        this.tradeService = tradeService;
+    }
 
 
     @PutMapping(value="/save")
@@ -31,7 +33,7 @@ public class TradeController {
 
     @PutMapping(value="/pending")
     @ResponseStatus(HttpStatus.CREATED)
-    @Operation(summary = "Record a Trade")
+    @Operation(summary = "Allocate a Trade for POST Processing ")
     public void recordPendingTransaction(@RequestBody Trade t) throws NotFoundException, JsonProcessingException {
         tradeService.recordPendingTransaction(t);
     }

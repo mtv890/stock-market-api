@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Configuration
 public class SwaggerConfig {
     @Bean
-    public OpenAPI api(){
+    public OpenAPI api() {
         Contact contact = new Contact();
         contact.setName("Mariano Vico");
         contact.setEmail("mariano@vico.com.ar");
@@ -28,10 +28,8 @@ public class SwaggerConfig {
     }
 
 
-
     @Controller
-    public class SwaggerRedirect{
-
+    public static class SwaggerRedirect {
         @RequestMapping(value = "/")
         public String redirectToSwagger() {
             return "redirect:swagger-ui.html";
