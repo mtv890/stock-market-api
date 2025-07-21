@@ -1,5 +1,6 @@
 package com.shilton.stockmarketapi.exception.handler;
 
+import com.shilton.stockmarketapi.exception.BadTradeRequestException;
 import com.shilton.stockmarketapi.exception.model.ErrorResponse;
 import com.shilton.stockmarketapi.exception.NotFoundException;
 import com.shilton.stockmarketapi.exception.TooManyRequestsException;
@@ -33,6 +34,12 @@ public class GlobalExceptionHandler {
                 .collect(Collectors.toList());
 
         return buildErrorResponse("Validation Failed", errors, HttpStatus.BAD_REQUEST);
+    }
+
+
+    @ExceptionHandler(BadTradeRequestException.class)
+    public ResponseEntity<ErrorResponse> handleBadTradeRequest(BadTradeRequestException ex) {
+        return buildErrorResponse(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(Exception.class)

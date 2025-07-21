@@ -11,5 +11,5 @@ public interface IStockService {
 
     Stock updateStock(Stock s);
 
-    void deleteStock(Stock s);
+    void deleteStockByStockSymbol(String stockSymbol);
 }

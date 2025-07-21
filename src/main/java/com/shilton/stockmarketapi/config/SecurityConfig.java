@@ -23,11 +23,12 @@ public class SecurityConfig {
                 )
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(
+                                "/",
                                 "/public/**",
                                 "/swagger-ui/**",
                                 "/v3/api-docs/**"
-                        ).permitAll()                                 //Public endpoints + Swagger UI
-                        .requestMatchers("/api/**").authenticated() //any /api/** needs valid JWT Bearer token
+                        ).permitAll()
+                        .requestMatchers("/api/**").authenticated()
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2
                         .jwt(withDefaults()) // Visit https://developers.google.com/oauthplayground/ to get valid tokens

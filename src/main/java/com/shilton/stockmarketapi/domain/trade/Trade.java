@@ -23,7 +23,7 @@ public class Trade {
     private String stockSymbol;
     private LocalDate timeStamp;
     @Column(nullable = false)
-    private String username;
+    private String userId;
 
     public Trade() {}
 }

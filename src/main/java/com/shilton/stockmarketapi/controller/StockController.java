@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/stocks")
+@RequestMapping("api/v1/stock")
 public class StockController {
 
     private static final Logger LOG = LoggerFactory.getLogger(StockController.class);
@@ -52,7 +52,6 @@ public class StockController {
         return stock.getPERatio(price);
     }
 
-
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(value = "/all")
@@ -74,5 +73,12 @@ public class StockController {
     @Operation(summary = "Add/Update a common Stock")
     public Stock updateStock(@RequestBody CommonStock s) {
         return stockService.updateStock(s);
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping(value = "/{stockSymbol}")
+    @Operation(summary = "Get an Stock by Symbol")
+    public void deleteStockByStockSymbol(@PathVariable String stockSymbol) {
+        stockService.deleteStockByStockSymbol(stockSymbol);
     }
 }

@@ -1,6 +1,7 @@
 package com.shilton.stockmarketapi.service.impl;
 
 import com.shilton.stockmarketapi.domain.stock.Stock;
+import com.shilton.stockmarketapi.exception.NotFoundException;
 import com.shilton.stockmarketapi.repository.StockRepository;
 import com.shilton.stockmarketapi.service.IStockService;
 import org.slf4j.Logger;
@@ -24,14 +25,16 @@ public class StockService implements IStockService {
 
     @Transactional
     public Stock getStockByStockSymbol(String stockSymbol) {
-        stockSymbol = stockSymbol.toUpperCase();
-        Optional<Stock> s = stockRepository.findStockByStockSymbol(stockSymbol);
-        LOG.info("Returning {} Stock", stockSymbol);
-        return s.orElse(null);
+        String upStockSymbol = stockSymbol.toUpperCase();
+        Optional<Stock> s = stockRepository.findStockByStockSymbol(upStockSymbol);
+        LOG.info("Returning {} Stock", upStockSymbol);
+        return s.orElseThrow(() -> {
+            LOG.error("Stock Symbol {} not found", upStockSymbol);
+            return new NotFoundException("Stock not found");
+        });
     }
 
     @Transactional
-    //@AppSecured
     public List<Stock> getAllStocks() {
         List<Stock> s = stockRepository.findAll();
         LOG.info("Returning All Stocks");
@@ -45,8 +48,8 @@ public class StockService implements IStockService {
     }
 
     @Transactional
-    public void deleteStock(Stock s) {
-        LOG.info("Deleting Stock {}", s.getStockSymbol());
-        stockRepository.delete(s);
+    public void deleteStockByStockSymbol(String stockSymbol) {
+        LOG.info("Deleting Stock {}...", stockSymbol);
+        stockRepository.deleteStockByStockSymbol(stockSymbol);
     }
 }

@@ -32,7 +32,7 @@ public class SwaggerConfig {
     public static class SwaggerRedirect {
         @RequestMapping(value = "/")
         public String redirectToSwagger() {
-            return "redirect:swagger-ui.html";
+            return "redirect:swagger-ui/index.html";
         }
     }
 }

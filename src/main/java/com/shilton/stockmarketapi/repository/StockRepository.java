@@ -9,4 +9,7 @@ import java.util.Optional;
 @Repository
 public interface StockRepository extends JpaRepository<Stock, String> {
     Optional<Stock> findStockByStockSymbol(String stockSymbol);
+    void deleteStockByStockSymbol(String stockSymbol);
+
+
 }
