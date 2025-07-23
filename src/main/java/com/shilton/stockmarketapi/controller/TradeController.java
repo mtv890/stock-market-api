@@ -46,7 +46,7 @@ public class TradeController {
     @GetMapping(value = "/{tradeId}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Get a Trade By Transaction ID")
-    public TradeResponse getTradeById(@PathVariable Long tradeId, @AuthenticationPrincipal Jwt jwt) throws NotFoundException, JsonProcessingException {
+    public TradeResponse getTradeById(@PathVariable Long tradeId) throws NotFoundException {
         return TradeMapper.toResponse(
                 tradeService.getTradeById(tradeId)
         );
@@ -55,7 +55,7 @@ public class TradeController {
     @GetMapping(value = "/all")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Get all Trades of a User")
-    public List<TradeResponse> getUserTrades(@AuthenticationPrincipal Jwt jwt) throws NotFoundException, JsonProcessingException {
+    public List<TradeResponse> getUserTrades(@AuthenticationPrincipal Jwt jwt) throws NotFoundException {
         String userId = jwt.getSubject();
         return tradeService.getAllTradesOfUser(userId).stream()
                 .map(TradeMapper::toResponse)

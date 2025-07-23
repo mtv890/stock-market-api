@@ -3,7 +3,6 @@ package com.shilton.stockmarketapi.mapper;
 import com.shilton.stockmarketapi.controller.dto.CreateTradeRequest;
 import com.shilton.stockmarketapi.controller.dto.TradeResponse;
 import com.shilton.stockmarketapi.domain.trade.Trade;
-import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 

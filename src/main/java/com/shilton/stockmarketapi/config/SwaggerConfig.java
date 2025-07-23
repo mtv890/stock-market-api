@@ -30,6 +30,7 @@ public class SwaggerConfig {
 
     @Controller
     public static class SwaggerRedirect {
+        @SuppressWarnings("SameReturnValue")
         @RequestMapping(value = "/")
         public String redirectToSwagger() {
             return "redirect:swagger-ui/index.html";

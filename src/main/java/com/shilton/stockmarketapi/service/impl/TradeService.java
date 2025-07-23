@@ -19,7 +19,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.time.ZoneOffset;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -68,9 +67,10 @@ public class TradeService implements ITradeService {
 
     @Transactional
     public List<Trade> getAllTradesOfUser(String usedId) {
-        List<Trade> s = tradeRepository.findAll().stream()
+        /*List<Trade> s = tradeRepository.findAll().stream()
                 .filter(t -> Objects.equals(t.getUserId(), usedId))
-                .toList();
+                .toList();*/
+        List<Trade> s = tradeRepository.findTradesByUserId(usedId);
         LOG.info("Returning All Trades");
         return s;
     }

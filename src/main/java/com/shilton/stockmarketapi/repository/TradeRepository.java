@@ -11,5 +11,7 @@ import java.util.Optional;
 @Repository
 public interface TradeRepository extends JpaRepository<Trade, Long> {
     Optional<Trade> findTradeByTransactionId(Long transactionId);
+
+    //@Query("SELECT t FROM Trade t WHERE t.userId = :userId")
     List<Trade> findTradesByUserId(String userId);
 }

@@ -28,16 +28,16 @@ public class RateLimitingAspect {
         int limit = rateLimited.maxRequests();
         int window = rateLimited.timeWindowInSeconds();
 
-        Deque<Long> timestamps = requestTimestamps.get(userId);
+        /*Deque<Long> timestamps = requestTimestamps.get(userId);
         if (timestamps == null) {
             timestamps = new ArrayDeque<>();
             requestTimestamps.put(userId, timestamps);
-        }
-
+        }*/
+        Deque<Long> timestamps = requestTimestamps.computeIfAbsent(userId, k -> new ArrayDeque<>());
 
         synchronized (timestamps) {
             long now = System.currentTimeMillis();
-            while (!timestamps.isEmpty() && now - timestamps.peekFirst() > window * 1000) {
+            while (!timestamps.isEmpty() && now - timestamps.peekFirst() > window * 1000L) {
                 timestamps.pollFirst();
             }
             if (timestamps.size() >= limit) {
