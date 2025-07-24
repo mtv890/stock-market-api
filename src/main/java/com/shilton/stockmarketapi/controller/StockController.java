@@ -62,14 +62,14 @@ public class StockController {
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping(value = "/preferredStock")
+    @PutMapping(value = "/preferredStock")
     @Operation(summary = "Add/Update a preferred Stock")
     public Stock updateStock(@RequestBody PreferredStock s) {
         return stockService.updateStock(s);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping(value = "/commonStock")
+    @PutMapping(value = "/commonStock")
     @Operation(summary = "Add/Update a common Stock")
     public Stock updateStock(@RequestBody CommonStock s) {
         return stockService.updateStock(s);
@@ -77,7 +77,7 @@ public class StockController {
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping(value = "/{stockSymbol}")
-    @Operation(summary = "Get an Stock by Symbol")
+    @Operation(summary = "Delete an Stock by Symbol")
     public void deleteStockByStockSymbol(@PathVariable String stockSymbol) {
         stockService.deleteStockByStockSymbol(stockSymbol);
     }
