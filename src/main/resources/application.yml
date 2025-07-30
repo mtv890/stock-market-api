@@ -7,8 +7,9 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
-    password: 123456
-    url: jdbc:mysql://localhost:3306/stockMarketDB?createDatabaseIfNotExist=true
+    password: c3bN5JhM5LWPtetkKmFXXPcWgMrvd3C5 #123456
+    url: jdbc:mysql://${DB_URL}:3306/STOCK_MARKET_DB?createDatabaseIfNotExist=true
+    #jdbc:mysql://localhost:3306/stockMarketDB?createDatabaseIfNotExist=true
   jpa:
     show-sql: true
     hibernate:
@@ -17,10 +18,10 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MariaDBDialect
   rabbitmq:
-    host: localhost
-    port: 5671
-    username: admin
-    password: 123456
+    host: ${QUEUE_URL} #localhost
+    port: 5672
+    username: guest #admin
+    password: guest #123456
 management:
   endpoints:
     web:
