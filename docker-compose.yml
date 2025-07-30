@@ -1,4 +1,3 @@
-# Use root/example as user/password credentials
 version: '3.8'
 services:
   stock-market-api:
@@ -6,9 +5,23 @@ services:
     build:
       context: .
     container_name: stock-market-api
+    networks:
+      stock-net:
+        ipv4_address: 192.168.30.74
     ports:
       - "8080:8080"
     environment:
       - DB_URL=${DB_URL}
       - QUEUE_URL=${QUEUE_URL}
     restart: unless-stopped
+    volumes:
+      - /mnt/user/appdata/stock-market-api:/app:rw
+
+networks:
+  stock-net:
+    driver: macvlan
+    driver_opts:
+      parent: br0.30
+    ipam:
+      config:
+        - subnet: 192.168.30.0/24
