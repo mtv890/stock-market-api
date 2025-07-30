@@ -1,24 +1,14 @@
 # Use root/example as user/password credentials
-version: '3.1'
-
+version: '3.8'
 services:
-  db:
-    image: mysql
-    command: --default-authentication-plugin=mysql_native_password
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: 123456
+  stock-market-api:
+    image: stock-market-api:latest
+    build:
+      context: .
+    container_name: stock-market-api
     ports:
-      - 3306:3306
-  rabbitmq:
-    image: rabbitmq:3-management
-    ports:
-      - "5672:5672"    # puerto AMQP
-      - "15672:15672"  # panel de gestión
+      - "8080:8080"
     environment:
-      RABBITMQ_DEFAULT_USER: admin
-      RABBITMQ_DEFAULT_PASS: 123456
-    volumes:
-      - rabbitmq_data:/var/lib/rabbitmq
-volumes:
-  rabbitmq_data:
+      - DB_URL=${DB_URL}
+      - QUEUE_URL=${QUEUE_URL}
+    restart: unless-stopped
